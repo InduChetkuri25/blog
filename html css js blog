@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Blog Post</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Styling for the header */
+        header {
+            background-color: lightblue;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Styling for the main content area */
+        main {
+            padding: 20px;
+            margin: 20px;
+            background-color: lightgray;
+        }
+
+        /* Styling for the comments section */
+        #comments {
+            margin-top: 30px;
+        }
+
+        #commentList {
+            list-style-type: none;
+            margin-bottom: 20px;
+        }
+
+        #commentList li {
+            background-color: white;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: lightblue;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: deepskyblue;
+        }
+
+        /* Styling for the footer */
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Blog</h1>
+    </header>
+    <main>
+        <article>
+            <h2>Web Technologies</h2>
+            <p><strong>Author:</strong> ABCDE</p>
+            <p>Welcome to the world of Web Technologies, where we design and create beautiful and interactive websites.</p>
+        </article>
+        <section id="comments">
+            <h3>Comments</h3>
+            <ul id="commentList">
+                <!-- Comments will be appended here by JavaScript -->
+            </ul>
+            <form id="commentForm" onsubmit="return addComment()">
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" name="name" required><br><br>
+                <label for="comment">Comment:</label><br>
+                <textarea id="comment" name="comment" rows="4" required></textarea><br><br>
+                <button type="submit">Submit Comment</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 My Blog</p>
+    </footer>
+    <script>
+        function addComment() {
+            // Get the values from the form
+            var name = document.getElementById('name').value;
+            var comment = document.getElementById('comment').value;
+            
+            // Validate non-empty fields
+            if (name !== "" && comment !== "") {
+                // Create a new list item for the comment
+                var li = document.createElement('li');
+                li.innerHTML = '<strong>' + name + '</strong>: ' + comment;
+
+                // Add the new comment to the list
+                var commentList = document.getElementById('commentList');
+                commentList.appendChild(li);
+
+                // Clear the form fields
+                document.getElementById('name').value = '';
+                document.getElementById('comment').value = '';
+            }
+            
+            // Prevent form submission
+            return false;
+        }
+    </script>
+</body>
+</html>
